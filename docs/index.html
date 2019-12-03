@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>VueTerminalEmulator</title>
 	<script src='https://unpkg.com/vue@2.2.6'></script>
-	<script src="./vue-terminal.min.js"></script>
+	<script src="./plugins/vue-terminal.min.js"></script>
 	<script src="./plugins/commandList.js"></script>
 	<script src="./plugins/taskList.js"></script>
 </head>
@@ -27,4 +27,10 @@
 	var APP = Vue.extend(main)
 	new APP().$mount('#app')
 </script>
+
+<style>
+    body{
+        background-image: url('https://cdn.jsdelivr.net/gh/Tomotoes/images/blog/bg-light.jpg');
+    }
+</style>
 </html>

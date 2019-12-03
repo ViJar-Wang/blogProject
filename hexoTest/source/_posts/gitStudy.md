@@ -168,6 +168,9 @@ Git is free software.
 
 ```cmd
 $ git reflog
+```
+
+```
 778d2dd (HEAD -> master) HEAD@{0}: reset: moving to 778d2ddf
 7b0fa71 HEAD@{1}: reset: moving to HEAD^
 778d2dd (HEAD -> master) HEAD@{2}: commit: first update readme.txt
@@ -178,7 +181,7 @@ $ git reflog
 
 ## 远程仓库
 
-#### 添加远程仓库
+### 添加远程仓库
 
 现在的情景是，你已经在本地创建了一个Git仓库后，又想在GitHub创建一个Git仓库，并且让这两个仓库进行远程同步，这样，GitHub上的仓库既可以作为备份，又可以让其他人通过该仓库来协作，真是一举多得。
 
@@ -200,15 +203,6 @@ $ git remote add origin https://github.com/ViJar-Wang/jar.git
 
 ```cmd
 $ git push -u origin master
-Enumerating objects: 6, done.
-Counting objects: 100% (6/6), done.
-Delta compression using up to 4 threads
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (6/6), 477 bytes | 477.00 KiB/s, done.
-Total 6 (delta 0), reused 0 (delta 0)
-To https://github.com/ViJar-Wang/jar.git
- * [new branch]      master -> master
-Branch 'master' set up to track remote branch 'master' from 'origin'.
 ```
 
 如果你是第一次push或者clone，那么会得到一个警告：
@@ -236,3 +230,51 @@ Warning: Permanently added 'github.com' (RSA) to the list of known hosts.
 ![](github3.png)
 
 会发现github上已经有readme.txt这个文件了。
+
+### 从远程仓库克隆
+
+当你需要从远处仓库下载的时候，你可以直接下载压缩包文件，也可以通过命令克隆到本地
+
+```
+git clone https://github.com/ViJar-Wang/ViJar-Wang.github.io.git
+```
+
+注意把Git仓库地址换成你自己的，克隆也可以指定目录，在末尾加个路径就好了
+
+## 错误收集
+
+**1.报错`fatal: remote origin already exists.`**
+
+```
+git remote rm origin
+```
+
+**2.报错`The authenticity of host 'github.com ' can't be established`**
+
+这是由于你的git地址采用了ssh方式，切换为https方式即可，也可能是你的仓库地址不对，可以用命令先查看一下：
+
+```undefined
+git remote -v
+```
+
+如果跟你的github地址不一样，那就去你的github上复制一下仓库地址
+ 然后在终端中输入：
+
+```cpp
+git remote set-url origin https://github.com/yourname/learngit.git (这个是你的复制的仓库地址)
+```
+
+最后再push下就可以了！
+
+```undefined
+git push origin master 
+```
+
+**3.报错`Updates were rejected because the remote contains work that you do`**
+
+在push之前输入：
+
+```
+git pull origin master
+```
+
